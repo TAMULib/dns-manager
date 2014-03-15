@@ -13,19 +13,36 @@
       <nav class="navbar navbar-inverse" role="navigation">
         <div class="container-fluid">
           <div class="navbar-header">
-            <a class="navbar-brand" href="#">Library DNS Manager</a>
+            <a class="navbar-brand" href="/">LIDM</a>
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home</a></li>
+              @def navbar():
+              <li><a href="/">Home</a></li>
+              @end
+              @navbar()
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="/login">Login</a></li>
+              @def nav_login():
+              @end
+              @nav_login()
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>
+      <ol class="breadcrumb">
+      @def breadcrumb():
+      @end
+      @breadcrumb()
+      </ol>
     </div> <!-- /container -->
+    <div class="container">
+    </div>
+    <div class="container">
+    @def content():
+    @end
+    @content()
+    </div>
   </body>
 </html>
 

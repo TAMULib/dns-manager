@@ -1,0 +1,9 @@
+[ldap]
+proxy_user = CN=proxy user,OU=service accounts,DC=example,DC=com
+proxy_pass = proxypassword
+ldap_server = ldaps://ldap.example.com
+ldap_search_base = OU=Users,DC=example,DC=com
+username_attribute = sAMAccountName
+
+[security]
+key = pipriu7*7029]dafjhhka;>fhofshlkj#9hkshjaoiuqdfiujliu03-=afhe
