@@ -1,0 +1,44 @@
+@extends("master.html")
+@require(cname)
+
+@def navbar():
+  <li><a href="/">Home</a></li>
+  <li class="active"><a href="/">DNS</a></li>
+@end
+
+@def nav_login():
+  <li><a href="/logout">Logout</a></li>
+@end
+
+@def breadcrumb():
+  <li><a href="/">Home</a></li>
+  <li class="active">DNS</li>
+@end
+
+@def content():
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">CNAME</h3>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped table-condensed sortable">
+        <tr><th>Name</th><th>Destination</th></tr>
+        @for name in sorted(cname):
+          @if not name in ['_id', '_rev']:
+            <tr>
+              <td>
+                <form action="/delete" method="link">
+                  <input type="hidden" name="name" value="@name"/>
+                  @name 
+                  <button class="btn btn-danger btn-xs" type="submit">
+                    <span class="glyphicon glyphicon-remove"></span> Remove
+                  </button>
+                </form>
+              </td>
+              <td>@cname[name]</td></tr>
+          @end
+        @end
+      </table>
+    </div>
+  </div>
+@end

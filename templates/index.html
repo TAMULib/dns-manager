@@ -2,7 +2,10 @@
 @require(auth)
 
 @def navbar():
-<li class="active"><a href="#">Home</a></li>
+  <li class="active"><a href="/">Home</a></li>
+  @if auth != None:
+    <li><a href="/dns">DNS</a></li>
+  @end
 @end
 
 @def nav_login():
@@ -16,7 +19,7 @@
 @end
 
 @def breadcrumb():
-<li><a href="#">Home</a></li>
+<li>Home</li>
 @end
 
 @def content():
@@ -26,7 +29,12 @@
   </div>
   <div class="panel-body">
     @if auth != None:
-      You are logged in as @auth
+      <div class="well">
+        <button onClick="parent.location='/dns'" type="submit" 
+            class="btn btn-primary">
+          Manage DNS
+        </button>
+      </div>
     @else:
       <div class="well">
       You are not logged in

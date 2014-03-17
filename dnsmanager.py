@@ -4,6 +4,9 @@ from wheezy.template.engine import Engine
 from wheezy.template.ext.core import CoreExtension
 from wheezy.template.loader import FileLoader
 import ldap
+import urllib2
+from urlparse import urljoin
+import json
 
 searchpath = ['templates']
 engine = Engine(
@@ -18,10 +21,25 @@ app.config.load_config("config.ini")
 @app.route('/')
 def index():
   signing_key = app.config['security.key']
-  auth = request.get_cookie("auth", secret=signing_key)
+  auth = request.get_cookie("auth", secret = signing_key)
   
   template = engine.get_template('index.html')
   return template.render({'auth':auth})
+
+@app.get('/dns')
+def dns():
+  signing_key = app.config['security.key']
+  auth = request.get_cookie("auth", secret = signing_key)
+  
+  if auth == None:
+    redirect("/")
+  
+  db_url = urljoin(app.config['db.server'], app.config['db.database'])
+  cname_url = urljoin(db_url + "/", 'cname')
+  data = json.load(urllib2.urlopen(cname_url))
+
+  template = engine.get_template('dns.html')
+  return template.render({'cname':data})
 
 @app.get('/logout')
 def do_logout():
