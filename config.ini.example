@@ -7,3 +7,7 @@ username_attribute = sAMAccountName
 
 [security]
 key = pipriu7*7029]dafjhhka;>fhofshlkj#9hkshjaoiuqdfiujliu03-=afhe
+
+[db]
+server = http://couchdb.server:5984/
+database = dns
